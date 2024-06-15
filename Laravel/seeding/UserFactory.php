@@ -23,20 +23,21 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        dd('Seeder UserFactory');
         return [
-        'first_name' => fake()->firstName(),
-        'last_name' => fake()->lastName(),
-        'email' => fake()->unique()->safeEmail(),
-        'email_verified_at' => now(),
-        'password' => static::$password ??= Hash::make('password'),
-        'drid' => fake()->numberBetween(1, 1000), // Assuming a range of 1-1000 for drid
-        'ptid' => fake()->numberBetween(1, 1000), // Assuming a range of 1-1000 for ptid
-        'status' => fake()->numberBetween(0, 1), // Assuming 0 or 1 for status (tinyint)
-        'sms_alerts' => fake()->numberBetween(0, 1), // Assuming 0 or 1 for sms_alerts (tinyint)
-        'email_alerts' => fake()->numberBetween(0, 1), // Assuming 0 or 1 for email_alerts (tinyint)
-        'auth_code' => fake()->uuid, // Generating a random UUID string for auth_code
-        'remember_token' => Str::random(10),
-    ];
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'email' => fake()->unique()->safeEmail(),
+            'email_verified_at' => now(),
+            'password' => Hash::make(Str::random(10)), // Generate a random 10-character string and hash it
+            'drid' => fake()->numberBetween(1, 1000),
+            'ptid' => fake()->numberBetween(1, 1000),
+            'status' => fake()->numberBetween(0, 1),
+            'sms_alerts' => fake()->numberBetween(0, 1),
+            'email_alerts' => fake()->numberBetween(0, 1),
+            'auth_code' => fake()->uuid,
+            'remember_token' => Str::random(10),
+        ];
     }
 
     /**
